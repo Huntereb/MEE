@@ -295,7 +295,7 @@ namespace TestUI
 
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)           //Checkbox 3 Setup
         {
             if (checkBox3.Checked == false)
             {
@@ -329,7 +329,7 @@ namespace TestUI
                 MessageBox.Show("This file is not a valid evolution table! Make sure you didn't edit it with a hex editor or anything.");
             }
 
-            if (boxitem == "384 - Rayquaza")
+            if (boxitem == "384 - Rayquaza" && files.Length == 826)         //Only yell at the user about Rayquaza if they're editing OR/AS
             {
                 MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
             }
