@@ -22,6 +22,10 @@ namespace TestUI
         public MEE()            //All the initial settings
         {
             InitializeComponent();
+
+            label7.Text = "Game mode: None";
+            label7.Enabled = false;
+
             numericUpDown1.Maximum = 10;
             numericUpDown1.Minimum = 0;
             numericUpDown2.Maximum = 775;
@@ -64,7 +68,7 @@ namespace TestUI
             toolTip1.InitialDelay = 100;
             toolTip1.ReshowDelay = 500;
             toolTip1.ShowAlways = false;
-            toolTip1.SetToolTip(button1, "The Mega Evolutions Garc is at a/1/9/3");
+            toolTip1.SetToolTip(button1, "The Mega Evolutions Garc is at \"a/1/9/3\" for OR/AS, and \"a/2/1/6\" for X/Y");
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -76,14 +80,39 @@ namespace TestUI
                 basePath = fbd.SelectedPath;
                 files = System.IO.Directory.GetFiles(fbd.SelectedPath);
 
-                if (files.Length != 826)            //Yell at the user if a file is larger or smaller than it should be
+                if (files.Length == 799)            //Yell at the user if a file is larger or smaller than it should be
                 {
-                    MessageBox.Show("The decrypted garc must contain 826 files!");
+                    goto start;
+                }
+
+                if (files.Length == 826)
+                {
+                    goto start;
+                }
+
+                else
+                {
+                    MessageBox.Show("The decrypted garc must contain 826 files (For OR/AS) or 799 files (For X/Y)!");
                     goto end;
                 }
 
-                string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
-                monNames = new List<string>(lines);         //^ Splits the mons file into a huge array based on every "return key" and new line
+            start:
+
+                if (files.Length == 826)
+                {
+                    label7.Text = "Game mode: OR/AS";
+                    label7.Enabled = true;
+                    string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
+                    monNames = new List<string>(lines);
+                }
+
+                if (files.Length == 799)
+                {
+                    label7.Text = "Game mode: X/Y";
+                    label7.Enabled = true;
+                    string[] lines = Properties.Resources.mons2.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
+                    monNames = new List<string>(lines);
+                }
 
                 comboBox1.Items.AddRange(monNames.ToArray());
                 comboBox1.SelectedIndex = 0;
