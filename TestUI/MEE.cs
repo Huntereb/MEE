@@ -30,6 +30,10 @@ namespace TestUI
             numericUpDown3.Minimum = 0;
             numericUpDown4.Maximum = 10;
             numericUpDown4.Minimum = 0;
+            numericUpDown5.Maximum = 775;
+            numericUpDown5.Minimum = 0;
+            numericUpDown6.Maximum = 10;
+            numericUpDown6.Minimum = 0;
 
             button2.Enabled = false;
             comboBox1.Enabled = false;
@@ -37,16 +41,23 @@ namespace TestUI
             checkBox1.Checked = false;
             checkBox2.Enabled = false;
             checkBox2.Checked = false;
+            checkBox3.Enabled = false;
+            checkBox3.Checked = false;
             groupBox1.Enabled = false;
-            label2.Enabled = false;
-            numericUpDown1.Enabled = false;
-            label3.Enabled = false;
-            numericUpDown2.Enabled = false;
             groupBox2.Enabled = false;
-            label4.Enabled = false;
-            numericUpDown3.Enabled = false;
+            groupBox3.Enabled = false;
             label1.Enabled = false;
+            label2.Enabled = false;
+            label3.Enabled = false;
+            label4.Enabled = false;
+            label5.Enabled = false;
+            label6.Enabled = false;
+            numericUpDown1.Enabled = false;
+            numericUpDown2.Enabled = false;
+            numericUpDown3.Enabled = false;
             numericUpDown4.Enabled = false;
+            numericUpDown5.Enabled = false;
+            numericUpDown6.Enabled = false;
 
             ToolTip toolTip1 = new ToolTip();
             toolTip1.AutoPopDelay = 5000;
@@ -92,40 +103,53 @@ namespace TestUI
         {
             var Evoitem1 = Convert.ToInt16(numericUpDown2.Value);           //Convert "Numericupdown" stuff to int16
             var Evoitem2 = Convert.ToInt16(numericUpDown3.Value);
+            var Evoitem3 = Convert.ToInt16(numericUpDown5.Value);
             var Form1 = Convert.ToInt16(numericUpDown1.Value);
             var Form2 = Convert.ToInt16(numericUpDown4.Value);
+            var Form3 = Convert.ToInt16(numericUpDown6.Value);
 
             var Evoitem1b = BitConverter.GetBytes(Evoitem1);            //Convert int16 to Byte arrays
             var Evoitem2b = BitConverter.GetBytes(Evoitem2);
+            var Evoitem3b = BitConverter.GetBytes(Evoitem3);
             var Form1b = BitConverter.GetBytes(Form1);
             var Form2b = BitConverter.GetBytes(Form2);
+            var Form3b = BitConverter.GetBytes(Form3);
 
             BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file
 
-            if (checkBox1.Checked == true && checkBox2.Checked == true)         //Set checkbox values to write
+            if (checkBox1.Checked == true)         //Set checkbox values to write
             {
                 bw.Seek(2, 0);
                 bw.Write(1);
+            }
 
+            if (checkBox1.Checked == false)
+            {
+                bw.Seek(2, 0);
+                bw.Write(0);
+            }
+
+            if (checkBox2.Checked == true)
+            {
                 bw.Seek(10, 0);
                 bw.Write(1);
             }
 
-            if (checkBox1.Checked == true && checkBox2.Checked == false)
+            if (checkBox2.Checked == false)
             {
-                bw.Seek(2, 0);
-                bw.Write(1);
-
                 bw.Seek(10, 0);
                 bw.Write(0);
             }
 
-            if (checkBox1.Checked == false && checkBox2.Checked == false)
+            if (checkBox3.Checked == true)
             {
-                bw.Seek(2, 0);
-                bw.Write(0);
+                bw.Seek(18, 0);
+                bw.Write(1);
+            }
 
-                bw.Seek(10, 0);
+            if (checkBox3.Checked == false)
+            {
+                bw.Seek(18, 0);
                 bw.Write(0);
             }
 
@@ -135,11 +159,17 @@ namespace TestUI
             bw.Seek(12, 0);
             bw.Write(Evoitem2b);
 
+            bw.Seek(20, 0);
+            bw.Write(Evoitem3b);
+
             bw.Seek(0, 0);
             bw.Write(Form1b);
 
             bw.Seek(8, 0);
             bw.Write(Form2b);
+
+            bw.Seek(16, 0);
+            bw.Write(Form3b);
 
             bw.Close();
             
@@ -151,40 +181,54 @@ namespace TestUI
             {
                 checkBox2.Enabled = false;
                 checkBox2.Checked = false;
+                checkBox3.Enabled = false;
+                checkBox3.Checked = false;
 
-                groupBox1.Enabled = false;
-                label2.Enabled = false;
-                numericUpDown1.Enabled = false;
-                label3.Enabled = false;
-                numericUpDown2.Enabled = false;
-
-                groupBox2.Enabled = false;
-                label4.Enabled = false;
-                numericUpDown3.Enabled = false;
                 label1.Enabled = false;
+                label2.Enabled = false;
+                label3.Enabled = false;
+                label4.Enabled = false;
+                label5.Enabled = false;
+                label6.Enabled = false;
+                groupBox1.Enabled = false;
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = false;
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
                 numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+                numericUpDown6.Enabled = false;
 
+                numericUpDown1.Value = 0;
                 numericUpDown2.Value = 0;            //Set number boxes to 0
                 numericUpDown3.Value = 0;
-                numericUpDown1.Value = 0;
                 numericUpDown4.Value = 0;
+                numericUpDown5.Value = 0;
+                numericUpDown6.Value = 0;
             }
 
-            if (checkBox1.Checked == true && checkBox2.Checked == false)
+            if (checkBox1.Checked == true)
             {
                 checkBox2.Enabled = true;
 
-                groupBox2.Enabled = false;
-                label4.Enabled = false;
-                numericUpDown3.Enabled = false;
-                label1.Enabled = false;
-                numericUpDown4.Enabled = false;
-
                 groupBox1.Enabled = true;
                 label2.Enabled = true;
-                numericUpDown1.Enabled = true;
                 label3.Enabled = true;
+                numericUpDown1.Enabled = true;
                 numericUpDown2.Enabled = true;
+
+                groupBox2.Enabled = false;
+                label4.Enabled = false;
+                label1.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+
+                groupBox3.Enabled = false;
+                label5.Enabled = false;
+                label6.Enabled = false;
+                numericUpDown5.Enabled = false;
+                numericUpDown6.Enabled = false;
             }
 
         }
@@ -195,12 +239,17 @@ namespace TestUI
             {
                 groupBox2.Enabled = false;
                 label4.Enabled = false;
-                numericUpDown3.Enabled = false;
                 label1.Enabled = false;
+                numericUpDown3.Enabled = false;
                 numericUpDown4.Enabled = false;
 
                 numericUpDown3.Value = 0;           //Set evolution2's checkboxes to 0
                 numericUpDown4.Value = 0;
+                numericUpDown5.Value = 0;
+                numericUpDown6.Value = 0;
+
+                checkBox3.Enabled = false;
+                checkBox3.Checked = false;
             }
 
             if (checkBox2.Checked == true)
@@ -210,8 +259,32 @@ namespace TestUI
                 numericUpDown3.Enabled = true;
                 label1.Enabled = true;
                 numericUpDown4.Enabled = true;
+
+                checkBox3.Enabled = true;
+                checkBox3.Checked = false;
             }
 
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == false)
+            {
+                label5.Enabled = false;
+                label6.Enabled = false;
+                groupBox3.Enabled = false;
+                numericUpDown5.Enabled = false;
+                numericUpDown6.Enabled = false;
+            }
+
+            if (checkBox3.Checked == true)
+            {
+                label5.Enabled = true;
+                label6.Enabled = true;
+                groupBox3.Enabled = true;
+                numericUpDown5.Enabled = true;
+                numericUpDown6.Enabled = true;
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -227,41 +300,64 @@ namespace TestUI
                 MessageBox.Show("This file is not a valid evolution table! Make sure you didn't edit it with a hex editor or anything.");
             }
 
+            if (boxitem == "384 - Rayquaza")
+            {
+                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
+            }
+
             byte[] Evoitem1 = File.ReadAllBytes(pathsource).Skip(4).Take(2).ToArray();            //Get byte arrays
             byte[] Evoitem2 = File.ReadAllBytes(pathsource).Skip(12).Take(2).ToArray();
+            byte[] Evoitem3 = File.ReadAllBytes(pathsource).Skip(20).Take(2).ToArray();
             byte[] Form1 = File.ReadAllBytes(pathsource).Skip(0).Take(2).ToArray();
             byte[] Form2 = File.ReadAllBytes(pathsource).Skip(8).Take(2).ToArray();
+            byte[] Form3 = File.ReadAllBytes(pathsource).Skip(16).Take(2).ToArray();
             byte[] Enabled1 = File.ReadAllBytes(pathsource).Skip(2).Take(2).ToArray();
             byte[] Enabled2 = File.ReadAllBytes(pathsource).Skip(10).Take(2).ToArray();
+            byte[] Enabled3 = File.ReadAllBytes(pathsource).Skip(18).Take(2).ToArray();
 
             var Evoitem1c = BitConverter.ToInt16(Evoitem1, 0);          //Convert bytes to integer
             var Evoitem2c = BitConverter.ToInt16(Evoitem2, 0);
+            var Evoitem3c = BitConverter.ToInt16(Evoitem3, 0);
             var Form1c = BitConverter.ToInt16(Form1, 0);
             var Form2c = BitConverter.ToInt16(Form2, 0);
+            var Form3c = BitConverter.ToInt16(Form3, 0);
             var Enabled1c = BitConverter.ToInt16(Enabled1, 0);
             var Enabled2c = BitConverter.ToInt16(Enabled2, 0);
+            var Enabled3c = BitConverter.ToInt16(Enabled3, 0);
 
             numericUpDown2.Value = Evoitem1c;            //Populate number boxes
             numericUpDown3.Value = Evoitem2c;
+            numericUpDown5.Value = Evoitem3c;
             numericUpDown1.Value = Form1c;
             numericUpDown4.Value = Form2c;
+            numericUpDown6.Value = Form3c;
 
-            if (Enabled1c == 1 && Enabled2c == 1)           //Enable or disable checkboxes depending on the byte set
+            if (Enabled1c == 1 && Enabled2c == 1 && Enabled3c == 1)           //Enable or disable checkboxes depending on the byte set
             {
                 checkBox1.Checked = true;
                 checkBox2.Checked = true;
+                checkBox3.Checked = true;
+            }
+
+            if (Enabled1c == 1 && Enabled2c == 1 && Enabled3c == 0)
+            {
+                checkBox1.Checked = true;
+                checkBox2.Checked = true;
+                checkBox3.Checked = false;
             }
 
             if (Enabled1c == 1 && Enabled2c == 0)
             {
                 checkBox1.Checked = true;
                 checkBox2.Checked = false;
+                checkBox3.Checked = false;
             }
 
             if (Enabled1c == 0)
             {
                 checkBox1.Checked = false;
                 checkBox2.Checked = false;
+                checkBox3.Checked = false;
             }
 
         }
