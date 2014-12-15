@@ -111,6 +111,7 @@ namespace TestUI
             {
                 basePath = fbd.SelectedPath;
                 files = System.IO.Directory.GetFiles(fbd.SelectedPath);
+                LBL_GameMode.Text = "Game Mode: ";
                 if (files.Length == 799)            //Yell at the user if a file is larger or smaller than it should be
                 {
                     this.mode = "X/Y";
