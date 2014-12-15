@@ -90,7 +90,7 @@ namespace TestUI
             {
                 if ((int)CB_Species.SelectedValue == 384) //Current Mon is Rayquaza
                 {
-                    MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
+                    MessageBox.Show("Rayquaza is special and uses a different activator for its evolution. If it knows Dragon Ascent, it can Mega Evolve. Don't edit its evolution table if you want to keep this functionality.");
                 }
                 byte[] data = File.ReadAllBytes(files[(int)CB_Species.SelectedValue]);
                 for (int i = 0; i < 3; i++)
