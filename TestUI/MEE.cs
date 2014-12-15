@@ -86,23 +86,11 @@ namespace TestUI
                 basePath = fbd.SelectedPath;
                 files = System.IO.Directory.GetFiles(fbd.SelectedPath);
 
-                if (files.Length == 799)            //Yell at the user if a file is larger or smaller than it should be
-                {
-                    goto start;
-                }
-
-                if (files.Length == 826)
-                {
-                    goto start;
-                }
-
-                else
+                if (files.Length != 799 && files.Length != 826)         //Not using goto! :D
                 {
                     MessageBox.Show("The decrypted garc must contain 826 files (For OR/AS) or 799 files (For X/Y)!");
-                    goto end;
+                    return;
                 }
-
-            start:
 
                 if (files.Length == 826)
                 {
