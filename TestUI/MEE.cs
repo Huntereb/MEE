@@ -17,378 +17,176 @@ namespace TestUI
         private string pathsource;
         private string basePath;
         private string[] files;
-        private List<string> monNames;
+        private string mode = "";
+        private List<cbItem> monNames;
+
+        private Control[] groupbox_spec = { };
+        private Control[] forme_spec = { };
+        private Control[] item_spec = { };
+        private Control[] checkbox_spec = { };
+        private Control[] label_spec = { };
+        private Control[][] all_spec;
+        private bool loaded = false;
 
         public MEE()            //All the initial settings
         {
             InitializeComponent();
+            #region Intializations
 
-            label7.Text = "Game mode: None";
-            label7.Enabled = false;
+            groupbox_spec = new Control[] {GB_MEvo1,GB_MEvo2,GB_MEvo3};
+            item_spec = new Control[] { NUP_Item1, NUP_Item2, NUP_Item3 };
+            forme_spec = new Control[] { NUP_Forme1, NUP_Forme2, NUP_Forme3 };
+            checkbox_spec = new Control[] { CHK_MEvo1, CHK_MEvo2, CHK_MEvo3 };
+            label_spec = new Control[] { LBL_Forme1, LBL_Item1, LBL_Item2, LBL_Item3, LBL_Forme2, LBL_Forme3, LBL_GameMode };
+            all_spec = new Control[][] { groupbox_spec, item_spec, forme_spec, checkbox_spec, label_spec};
 
-            numericUpDown1.Maximum = 10;
-            numericUpDown1.Minimum = 0;
-            numericUpDown2.Maximum = 775;
-            numericUpDown2.Minimum = 0;
-            numericUpDown3.Maximum = 775;
-            numericUpDown3.Minimum = 0;
-            numericUpDown4.Maximum = 10;
-            numericUpDown4.Minimum = 0;
-            numericUpDown5.Maximum = 775;
-            numericUpDown5.Minimum = 0;
-            numericUpDown6.Maximum = 10;
-            numericUpDown6.Minimum = 0;
-
-            button2.Enabled = false;
-            comboBox1.Enabled = false;
-            checkBox1.Enabled = false;
-            checkBox1.Checked = false;
-            checkBox2.Enabled = false;
-            checkBox2.Checked = false;
-            checkBox3.Enabled = false;
-            checkBox3.Checked = false;
-            groupBox1.Enabled = false;
-            groupBox2.Enabled = false;
-            groupBox3.Enabled = false;
-            label1.Enabled = false;
-            label2.Enabled = false;
-            label3.Enabled = false;
-            label4.Enabled = false;
-            label5.Enabled = false;
-            label6.Enabled = false;
-            numericUpDown1.Enabled = false;
-            numericUpDown2.Enabled = false;
-            numericUpDown3.Enabled = false;
-            numericUpDown4.Enabled = false;
-            numericUpDown5.Enabled = false;
-            numericUpDown6.Enabled = false;
-
-            ToolTip toolTip1 = new ToolTip();
-            toolTip1.AutoPopDelay = 5000;
-            toolTip1.InitialDelay = 100;
-            toolTip1.ReshowDelay = 500;
-            toolTip1.ShowAlways = false;
-            toolTip1.SetToolTip(button1, "The Mega Evolutions Garc is at \"a/1/9/3\" for OR/AS, and \"a/2/1/6\" for X/Y");
+            ToolTip TT_Open = new ToolTip();
+            TT_Open.AutoPopDelay = 5000;
+            TT_Open.InitialDelay = 100;
+            TT_Open.ReshowDelay = 500;
+            TT_Open.ShowAlways = false;
+            TT_Open.SetToolTip(B_Open, "The Mega Evolutions Garc is at \"a/1/9/3\" for OR/AS, and \"a/2/1/6\" for X/Y");
+            #endregion          
         }
 
-        public void button1_Click(object sender, EventArgs e)
+        private void B_Save_Click(object sender, EventArgs e)
         {
+            string path = files[(int)CB_Species.SelectedValue];
+            byte[] data = File.ReadAllBytes(path);
+            for (int i = 0; i < 3; i++)
+            {
+                bool isChecked = ((CheckBox)checkbox_spec[i]).Checked;
+                Array.Copy(BitConverter.GetBytes( isChecked ? (ushort)1 : (ushort)0), 0, data, 2 + i * 8, 2);
+                if (isChecked)
+                {
+                    Array.Copy(BitConverter.GetBytes((ushort)((NumericUpDown)item_spec[i]).Value), 0, data, 4 + i * 8, 2);
+                    Array.Copy(BitConverter.GetBytes((ushort)((NumericUpDown)forme_spec[i]).Value), 0, data, i * 8, 2);
+                }
+            }
+            File.WriteAllBytes(path, data);
+        }
+
+        private void CHK_MEvo1_CheckedChanged(object sender, EventArgs e)          
+        {
+            groupbox_spec[0].Enabled = CHK_MEvo1.Checked;
+        }
+
+        private void CHK_MEvo2_CheckedChanged(object sender, EventArgs e)          
+        {
+            groupbox_spec[1].Enabled = CHK_MEvo2.Checked;
+        }
+
+        private void CHK_MEvo3_CheckedChanged(object sender, EventArgs e)
+        {
+            groupbox_spec[2].Enabled = CHK_MEvo3.Checked;
+        }
+
+        private void CB_Species_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                if ((int)CB_Species.SelectedValue == 384) //Current Mon is Rayquaza
+                {
+                    MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
+                }
+                byte[] data = File.ReadAllBytes(files[(int)CB_Species.SelectedValue]);
+                for (int i = 0; i < 3; i++)
+                {
+                    ((NumericUpDown)forme_spec[i]).Value = BitConverter.ToUInt16(data, i * 8);
+                    ((NumericUpDown)item_spec[i]).Value = BitConverter.ToUInt16(data, 4 + i * 8);
+                    ((CheckBox)checkbox_spec[i]).Checked = (BitConverter.ToUInt16(data, 2 + (i * 8)) == 1);
+                }
+            }
+        }
+
+        private void B_Open_Click(object sender, EventArgs e)
+        {
+            //Gotos were removed because goto is fucking terrible.
             FolderBrowserDialog fbd = new FolderBrowserDialog();            //Open a folder browser
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 basePath = fbd.SelectedPath;
                 files = System.IO.Directory.GetFiles(fbd.SelectedPath);
-
                 if (files.Length == 799)            //Yell at the user if a file is larger or smaller than it should be
                 {
-                    goto start;
+                    this.mode = "X/Y";
                 }
-
-                if (files.Length == 826)
+                else if (files.Length == 826)
                 {
-                    goto start;
+                    this.mode = "OR/AS";
                 }
-
                 else
                 {
                     MessageBox.Show("The decrypted garc must contain 826 files (For OR/AS) or 799 files (For X/Y)!");
-                    goto end;
+                    return;
                 }
-
-            start:
-
-                if (files.Length == 826)
+                for (int i = 0; i < files.Length; i++)
                 {
-                    label7.Text = "Game mode: OR/AS";
-                    label7.Enabled = true;
-                    string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
-                    monNames = new List<string>(lines);
+                    FileInfo fi = new FileInfo(files[i]);
+                    if (fi.Length != 0x18)
+                    {
+                        MessageBox.Show("File #"+i.ToString("000")+" is not the right length.");
+                        return;
+                    }
                 }
+                LBL_GameMode.Text += this.mode;
 
-                if (files.Length == 799)
+                string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+                monNames = new List<cbItem>();
+                List<string> temp_list = new List<string>();
+                for (int i = 0; i < files.Length; i++)
                 {
-                    label7.Text = "Game mode: X/Y";
-                    label7.Enabled = true;
-                    string[] lines = Properties.Resources.mons2.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
-                    monNames = new List<string>(lines);
+                    temp_list.Add(lines[i]);
+                }
+                temp_list.Sort();
+                foreach (string mon in temp_list)
+                {
+                    cbItem ncbi = new cbItem();
+                    ncbi.Text = mon;
+                    ncbi.Value = Array.IndexOf(lines, mon);
+                    monNames.Add(ncbi);
+                }         
+                foreach(Control[] control_spec in all_spec)
+                {
+                    foreach (Control ctrl in control_spec)
+                    {
+                        ctrl.Enabled = true;
+                    }
                 }
 
-                comboBox1.Items.AddRange(monNames.ToArray());
-                comboBox1.SelectedIndex = 0;
-            
-                checkBox1.Enabled = true;          //Re-enabled the first check box, dropdown, and save button so that the program isn't worthless
-                comboBox1.Enabled = true;
-                button2.Enabled = true;
+                foreach (CheckBox CHK in checkbox_spec)
+                {
+                    CHK.Checked = true;
+                    CHK.Checked = false;
+                }
 
-            end:
+                CB_Species.DataSource = monNames;
+                CB_Species.DisplayMember = "Text";
+                CB_Species.ValueMember = "Value";
+                CB_Species.SelectedValue = 0;
 
-                Console.Write("lol");           //I'm like fucking Macgyver
+                B_Save.Enabled = true;
+                CB_Species.Enabled = true;
+                loaded = true;
             }
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public class cbItem
         {
-            var Evoitem1 = Convert.ToInt16(numericUpDown2.Value);           //Convert "Numericupdown" stuff to int16
-            var Evoitem2 = Convert.ToInt16(numericUpDown3.Value);
-            var Evoitem3 = Convert.ToInt16(numericUpDown5.Value);
-            var Form1 = Convert.ToInt16(numericUpDown1.Value);
-            var Form2 = Convert.ToInt16(numericUpDown4.Value);
-            var Form3 = Convert.ToInt16(numericUpDown6.Value);
+            public string Text { get; set; }
+            public int Value { get; set; }
 
-            var Evoitem1b = BitConverter.GetBytes(Evoitem1);            //Convert int16 to Byte arrays
-            var Evoitem2b = BitConverter.GetBytes(Evoitem2);
-            var Evoitem3b = BitConverter.GetBytes(Evoitem3);
-            var Form1b = BitConverter.GetBytes(Form1);
-            var Form2b = BitConverter.GetBytes(Form2);
-            var Form3b = BitConverter.GetBytes(Form3);
-
-            BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file
-
-            if (checkBox1.Checked == true)         //Set checkbox values to write
+            public override string ToString()
             {
-                bw.Seek(2, 0);
-                bw.Write(1);
+                return Text;
             }
-
-            if (checkBox1.Checked == false)
-            {
-                bw.Seek(2, 0);
-                bw.Write(0);
-            }
-
-            if (checkBox2.Checked == true)
-            {
-                bw.Seek(10, 0);
-                bw.Write(1);
-            }
-
-            if (checkBox2.Checked == false)
-            {
-                bw.Seek(10, 0);
-                bw.Write(0);
-            }
-
-            if (checkBox3.Checked == true)
-            {
-                bw.Seek(18, 0);
-                bw.Write(1);
-            }
-
-            if (checkBox3.Checked == false)
-            {
-                bw.Seek(18, 0);
-                bw.Write(0);
-            }
-
-            bw.Seek(4, 0);
-            bw.Write(Evoitem1b);
-
-            bw.Seek(12, 0);
-            bw.Write(Evoitem2b);
-
-            bw.Seek(20, 0);
-            bw.Write(Evoitem3b);
-
-            bw.Seek(0, 0);
-            bw.Write(Form1b);
-
-            bw.Seek(8, 0);
-            bw.Write(Form2b);
-
-            bw.Seek(16, 0);
-            bw.Write(Form3b);
-
-            bw.Close();
-            
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)           //Checkbox1 setup
+        private void CB_Species_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == false)
-            {
-                checkBox2.Enabled = false;
-                checkBox2.Checked = false;
-                checkBox3.Enabled = false;
-                checkBox3.Checked = false;
-
-                label1.Enabled = false;
-                label2.Enabled = false;
-                label3.Enabled = false;
-                label4.Enabled = false;
-                label5.Enabled = false;
-                label6.Enabled = false;
-                groupBox1.Enabled = false;
-                groupBox2.Enabled = false;
-                groupBox3.Enabled = false;
-                numericUpDown1.Enabled = false;
-                numericUpDown2.Enabled = false;
-                numericUpDown3.Enabled = false;
-                numericUpDown4.Enabled = false;
-                numericUpDown5.Enabled = false;
-                numericUpDown6.Enabled = false;
-
-                numericUpDown1.Value = 0;
-                numericUpDown2.Value = 0;            //Set number boxes to 0
-                numericUpDown3.Value = 0;
-                numericUpDown4.Value = 0;
-                numericUpDown5.Value = 0;
-                numericUpDown6.Value = 0;
-            }
-
-            if (checkBox1.Checked == true)
-            {
-                checkBox2.Enabled = true;
-
-                groupBox1.Enabled = true;
-                label2.Enabled = true;
-                label3.Enabled = true;
-                numericUpDown1.Enabled = true;
-                numericUpDown2.Enabled = true;
-
-                groupBox2.Enabled = false;
-                label4.Enabled = false;
-                label1.Enabled = false;
-                numericUpDown3.Enabled = false;
-                numericUpDown4.Enabled = false;
-
-                groupBox3.Enabled = false;
-                label5.Enabled = false;
-                label6.Enabled = false;
-                numericUpDown5.Enabled = false;
-                numericUpDown6.Enabled = false;
-            }
-
+            //This is no longer necessary.
         }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)            //Checkbox2 setup
-        {
-            if (checkBox2.Checked == false)
-            {
-                groupBox2.Enabled = false;
-                label4.Enabled = false;
-                label1.Enabled = false;
-                numericUpDown3.Enabled = false;
-                numericUpDown4.Enabled = false;
-
-                numericUpDown3.Value = 0;           //Set evolution2's checkboxes to 0
-                numericUpDown4.Value = 0;
-                numericUpDown5.Value = 0;
-                numericUpDown6.Value = 0;
-
-                checkBox3.Enabled = false;
-                checkBox3.Checked = false;
-            }
-
-            if (checkBox2.Checked == true)
-            {
-                groupBox2.Enabled = true;
-                label4.Enabled = true;
-                numericUpDown3.Enabled = true;
-                label1.Enabled = true;
-                numericUpDown4.Enabled = true;
-
-                checkBox3.Enabled = true;
-                checkBox3.Checked = false;
-            }
-
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox3.Checked == false)
-            {
-                label5.Enabled = false;
-                label6.Enabled = false;
-                groupBox3.Enabled = false;
-                numericUpDown5.Enabled = false;
-                numericUpDown6.Enabled = false;
-            }
-
-            if (checkBox3.Checked == true)
-            {
-                label5.Enabled = true;
-                label6.Enabled = true;
-                groupBox3.Enabled = true;
-                numericUpDown5.Enabled = true;
-                numericUpDown6.Enabled = true;
-            }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var boxitem = comboBox1.SelectedItem.ToString();
-
-            pathsource = basePath + "\\" + (boxitem.Split(new string[] { " - " }, StringSplitOptions.None))[0] + ".bin";          //More rei code, but I fixed it mahself to reflect my own text file
-
-            var fi = new FileInfo(pathsource);
-
-            if (fi.Length != 24)
-            {
-                MessageBox.Show("This file is not a valid evolution table! Make sure you didn't edit it with a hex editor or anything.");
-            }
-
-            if (boxitem == "384 - Rayquaza")
-            {
-                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
-            }
-
-            byte[] Evoitem1 = File.ReadAllBytes(pathsource).Skip(4).Take(2).ToArray();            //Get byte arrays
-            byte[] Evoitem2 = File.ReadAllBytes(pathsource).Skip(12).Take(2).ToArray();
-            byte[] Evoitem3 = File.ReadAllBytes(pathsource).Skip(20).Take(2).ToArray();
-            byte[] Form1 = File.ReadAllBytes(pathsource).Skip(0).Take(2).ToArray();
-            byte[] Form2 = File.ReadAllBytes(pathsource).Skip(8).Take(2).ToArray();
-            byte[] Form3 = File.ReadAllBytes(pathsource).Skip(16).Take(2).ToArray();
-            byte[] Enabled1 = File.ReadAllBytes(pathsource).Skip(2).Take(2).ToArray();
-            byte[] Enabled2 = File.ReadAllBytes(pathsource).Skip(10).Take(2).ToArray();
-            byte[] Enabled3 = File.ReadAllBytes(pathsource).Skip(18).Take(2).ToArray();
-
-            var Evoitem1c = BitConverter.ToInt16(Evoitem1, 0);          //Convert bytes to integer
-            var Evoitem2c = BitConverter.ToInt16(Evoitem2, 0);
-            var Evoitem3c = BitConverter.ToInt16(Evoitem3, 0);
-            var Form1c = BitConverter.ToInt16(Form1, 0);
-            var Form2c = BitConverter.ToInt16(Form2, 0);
-            var Form3c = BitConverter.ToInt16(Form3, 0);
-            var Enabled1c = BitConverter.ToInt16(Enabled1, 0);
-            var Enabled2c = BitConverter.ToInt16(Enabled2, 0);
-            var Enabled3c = BitConverter.ToInt16(Enabled3, 0);
-
-            numericUpDown2.Value = Evoitem1c;            //Populate number boxes
-            numericUpDown3.Value = Evoitem2c;
-            numericUpDown5.Value = Evoitem3c;
-            numericUpDown1.Value = Form1c;
-            numericUpDown4.Value = Form2c;
-            numericUpDown6.Value = Form3c;
-
-            if (Enabled1c == 1 && Enabled2c == 1 && Enabled3c == 1)           //Enable or disable checkboxes depending on the byte set
-            {
-                checkBox1.Checked = true;
-                checkBox2.Checked = true;
-                checkBox3.Checked = true;
-            }
-
-            if (Enabled1c == 1 && Enabled2c == 1 && Enabled3c == 0)
-            {
-                checkBox1.Checked = true;
-                checkBox2.Checked = true;
-                checkBox3.Checked = false;
-            }
-
-            if (Enabled1c == 1 && Enabled2c == 0)
-            {
-                checkBox1.Checked = true;
-                checkBox2.Checked = false;
-                checkBox3.Checked = false;
-            }
-
-            if (Enabled1c == 0)
-            {
-                checkBox1.Checked = false;
-                checkBox2.Checked = false;
-                checkBox3.Checked = false;
-            }
-
-        }
+ 
     }
 }

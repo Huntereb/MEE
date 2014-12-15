@@ -61,90 +61,65 @@ namespace TestUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 000 - Egg
-        ///001 - Bulbasaur
-        ///002 - Ivysaur
-        ///003 - Venusaur
-        ///004 - Charmander
-        ///005 - Charmeleon
-        ///006 - Charizard
-        ///007 - Squirtle
-        ///008 - Wartortle
-        ///009 - Blastoise
-        ///010 - Caterpie
-        ///011 - Metapod
-        ///012 - Butterfree
-        ///013 - Weedle
-        ///014 - Kakuna
-        ///015 - Beedrill
-        ///016 - Pidgey
-        ///017 - Pidgeotto
-        ///018 - Pidgeot
-        ///019 - Rattata
-        ///020 - Raticate
-        ///021 - Spearow
-        ///022 - Fearow
-        ///023 - Ekans
-        ///024 - Arbok
-        ///025 - Pikachu
-        ///026 - Raichu
-        ///027 - Sandshrew
-        ///028 - Sandslash
-        ///029 - Nidoran♀
-        ///030 - Nidorina
-        ///031 - Nidoqueen
-        ///032 - Nidoran♂
-        ///033 - Nidorino
-        ///034 - Nidoking
+        ///   Looks up a localized string similar to Egg
+        ///Bulbasaur
+        ///Ivysaur
+        ///Venusaur
+        ///Charmander
+        ///Charmeleon
+        ///Charizard
+        ///Squirtle
+        ///Wartortle
+        ///Blastoise
+        ///Caterpie
+        ///Metapod
+        ///Butterfree
+        ///Weedle
+        ///Kakuna
+        ///Beedrill
+        ///Pidgey
+        ///Pidgeotto
+        ///Pidgeot
+        ///Rattata
+        ///Raticate
+        ///Spearow
+        ///Fearow
+        ///Ekans
+        ///Arbok
+        ///Pikachu
+        ///Raichu
+        ///Sandshrew
+        ///Sandslash
+        ///Nidoran♀
+        ///Nidorina
+        ///Nidoqueen
+        ///Nidoran♂
+        ///Nidorino
+        ///Nidoking
+        ///Clefairy
+        ///Clefable
+        ///Vulpix
+        ///Ninetales
+        ///Jigglypuff
+        ///Wigglytuff
+        ///Zubat
+        ///Golbat
+        ///Oddish
+        ///Gloom
+        ///Vileplume
+        ///Paras
+        ///Parasect
+        ///Venonat
+        ///Venomoth
+        ///Diglett
+        ///Dugtrio
+        ///Meowth
+        ///Persian
         /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string mons {
             get {
                 return ResourceManager.GetString("mons", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 000 - Egg
-        ///001 - Bulbasaur
-        ///002 - Ivysaur
-        ///003 - Venusaur
-        ///004 - Charmander
-        ///005 - Charmeleon
-        ///006 - Charizard
-        ///007 - Squirtle
-        ///008 - Wartortle
-        ///009 - Blastoise
-        ///010 - Caterpie
-        ///011 - Metapod
-        ///012 - Butterfree
-        ///013 - Weedle
-        ///014 - Kakuna
-        ///015 - Beedrill
-        ///016 - Pidgey
-        ///017 - Pidgeotto
-        ///018 - Pidgeot
-        ///019 - Rattata
-        ///020 - Raticate
-        ///021 - Spearow
-        ///022 - Fearow
-        ///023 - Ekans
-        ///024 - Arbok
-        ///025 - Pikachu
-        ///026 - Raichu
-        ///027 - Sandshrew
-        ///028 - Sandslash
-        ///029 - Nidoran♀
-        ///030 - Nidorina
-        ///031 - Nidoqueen
-        ///032 - Nidoran♂
-        ///033 - Nidorino
-        ///034 - Nidoking
-        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string mons2 {
-            get {
-                return ResourceManager.GetString("mons2", resourceCulture);
             }
         }
     }

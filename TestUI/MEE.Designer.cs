@@ -28,244 +28,295 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            this.B_Open = new System.Windows.Forms.Button();
+            this.B_Save = new System.Windows.Forms.Button();
+            this.NUP_Forme1 = new System.Windows.Forms.NumericUpDown();
+            this.LBL_Item1 = new System.Windows.Forms.Label();
+            this.LBL_Forme1 = new System.Windows.Forms.Label();
+            this.GB_MEvo1 = new System.Windows.Forms.GroupBox();
+            this.NUP_Item1 = new System.Windows.Forms.NumericUpDown();
+            this.GB_MEvo2 = new System.Windows.Forms.GroupBox();
+            this.NUP_Item2 = new System.Windows.Forms.NumericUpDown();
+            this.LBL_Forme2 = new System.Windows.Forms.Label();
+            this.LBL_Item2 = new System.Windows.Forms.Label();
+            this.NUP_Forme2 = new System.Windows.Forms.NumericUpDown();
+            this.CHK_MEvo1 = new System.Windows.Forms.CheckBox();
+            this.CHK_MEvo2 = new System.Windows.Forms.CheckBox();
+            this.CB_Species = new System.Windows.Forms.ComboBox();
+            this.GB_MEvo3 = new System.Windows.Forms.GroupBox();
+            this.NUP_Item3 = new System.Windows.Forms.NumericUpDown();
+            this.LBL_Forme3 = new System.Windows.Forms.Label();
+            this.LBL_Item3 = new System.Windows.Forms.Label();
+            this.NUP_Forme3 = new System.Windows.Forms.NumericUpDown();
+            this.CHK_MEvo3 = new System.Windows.Forms.CheckBox();
+            this.LBL_GameMode = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme1)).BeginInit();
+            this.GB_MEvo1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item1)).BeginInit();
+            this.GB_MEvo2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme2)).BeginInit();
+            this.GB_MEvo3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme3)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // B_Open
             // 
-            this.button1.Location = new System.Drawing.Point(174, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Open";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.B_Open.Location = new System.Drawing.Point(174, 10);
+            this.B_Open.Name = "B_Open";
+            this.B_Open.Size = new System.Drawing.Size(75, 23);
+            this.B_Open.TabIndex = 4;
+            this.B_Open.Text = "Open";
+            this.B_Open.UseVisualStyleBackColor = true;
+            this.B_Open.Click += new System.EventHandler(this.B_Open_Click);
             // 
-            // button2
+            // B_Save
             // 
-            this.button2.Location = new System.Drawing.Point(174, 39);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.B_Save.Enabled = false;
+            this.B_Save.Location = new System.Drawing.Point(174, 39);
+            this.B_Save.Name = "B_Save";
+            this.B_Save.Size = new System.Drawing.Size(75, 23);
+            this.B_Save.TabIndex = 5;
+            this.B_Save.Text = "Save";
+            this.B_Save.UseVisualStyleBackColor = true;
+            this.B_Save.Click += new System.EventHandler(this.B_Save_Click);
             // 
-            // numericUpDown1
+            // NUP_Forme1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(9, 81);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(36, 20);
-            this.numericUpDown1.TabIndex = 8;
+            this.NUP_Forme1.Enabled = false;
+            this.NUP_Forme1.Location = new System.Drawing.Point(9, 81);
+            this.NUP_Forme1.Maximum = new decimal(new int[] {
+            26,
+            0,
+            0,
+            0});
+            this.NUP_Forme1.Name = "NUP_Forme1";
+            this.NUP_Forme1.Size = new System.Drawing.Size(36, 20);
+            this.NUP_Forme1.TabIndex = 8;
             // 
-            // label2
+            // LBL_Item1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Item";
+            this.LBL_Item1.AutoSize = true;
+            this.LBL_Item1.Enabled = false;
+            this.LBL_Item1.Location = new System.Drawing.Point(6, 20);
+            this.LBL_Item1.Name = "LBL_Item1";
+            this.LBL_Item1.Size = new System.Drawing.Size(27, 13);
+            this.LBL_Item1.TabIndex = 9;
+            this.LBL_Item1.Text = "Item";
             // 
-            // label3
+            // LBL_Forme1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Form";
+            this.LBL_Forme1.AutoSize = true;
+            this.LBL_Forme1.Enabled = false;
+            this.LBL_Forme1.Location = new System.Drawing.Point(6, 65);
+            this.LBL_Forme1.Name = "LBL_Forme1";
+            this.LBL_Forme1.Size = new System.Drawing.Size(30, 13);
+            this.LBL_Forme1.TabIndex = 10;
+            this.LBL_Forme1.Text = "Form";
             // 
-            // groupBox1
+            // GB_MEvo1
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 91);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(75, 109);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Evolution 1";
+            this.GB_MEvo1.Controls.Add(this.NUP_Item1);
+            this.GB_MEvo1.Controls.Add(this.LBL_Forme1);
+            this.GB_MEvo1.Controls.Add(this.LBL_Item1);
+            this.GB_MEvo1.Controls.Add(this.NUP_Forme1);
+            this.GB_MEvo1.Enabled = false;
+            this.GB_MEvo1.Location = new System.Drawing.Point(12, 91);
+            this.GB_MEvo1.Name = "GB_MEvo1";
+            this.GB_MEvo1.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo1.TabIndex = 11;
+            this.GB_MEvo1.TabStop = false;
+            this.GB_MEvo1.Text = "Evolution 1";
             // 
-            // numericUpDown2
+            // NUP_Item1
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(9, 36);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown2.TabIndex = 11;
+            this.NUP_Item1.Enabled = false;
+            this.NUP_Item1.Location = new System.Drawing.Point(9, 36);
+            this.NUP_Item1.Maximum = new decimal(new int[] {
+            775,
+            0,
+            0,
+            0});
+            this.NUP_Item1.Name = "NUP_Item1";
+            this.NUP_Item1.Size = new System.Drawing.Size(50, 20);
+            this.NUP_Item1.TabIndex = 11;
             // 
-            // groupBox2
+            // GB_MEvo2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown3);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.numericUpDown4);
-            this.groupBox2.Location = new System.Drawing.Point(93, 91);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(75, 109);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Evolution 2";
+            this.GB_MEvo2.Controls.Add(this.NUP_Item2);
+            this.GB_MEvo2.Controls.Add(this.LBL_Forme2);
+            this.GB_MEvo2.Controls.Add(this.LBL_Item2);
+            this.GB_MEvo2.Controls.Add(this.NUP_Forme2);
+            this.GB_MEvo2.Location = new System.Drawing.Point(93, 91);
+            this.GB_MEvo2.Name = "GB_MEvo2";
+            this.GB_MEvo2.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo2.TabIndex = 12;
+            this.GB_MEvo2.TabStop = false;
+            this.GB_MEvo2.Text = "Evolution 2";
             // 
-            // numericUpDown3
+            // NUP_Item2
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(9, 36);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown3.TabIndex = 11;
+            this.NUP_Item2.Enabled = false;
+            this.NUP_Item2.Location = new System.Drawing.Point(9, 36);
+            this.NUP_Item2.Maximum = new decimal(new int[] {
+            775,
+            0,
+            0,
+            0});
+            this.NUP_Item2.Name = "NUP_Item2";
+            this.NUP_Item2.Size = new System.Drawing.Size(50, 20);
+            this.NUP_Item2.TabIndex = 11;
             // 
-            // label1
+            // LBL_Forme2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Form";
+            this.LBL_Forme2.AutoSize = true;
+            this.LBL_Forme2.Enabled = false;
+            this.LBL_Forme2.Location = new System.Drawing.Point(6, 65);
+            this.LBL_Forme2.Name = "LBL_Forme2";
+            this.LBL_Forme2.Size = new System.Drawing.Size(30, 13);
+            this.LBL_Forme2.TabIndex = 10;
+            this.LBL_Forme2.Text = "Form";
             // 
-            // label4
+            // LBL_Item2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Item";
+            this.LBL_Item2.AutoSize = true;
+            this.LBL_Item2.Enabled = false;
+            this.LBL_Item2.Location = new System.Drawing.Point(6, 20);
+            this.LBL_Item2.Name = "LBL_Item2";
+            this.LBL_Item2.Size = new System.Drawing.Size(27, 13);
+            this.LBL_Item2.TabIndex = 9;
+            this.LBL_Item2.Text = "Item";
             // 
-            // numericUpDown4
+            // NUP_Forme2
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(9, 81);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(36, 20);
-            this.numericUpDown4.TabIndex = 8;
+            this.NUP_Forme2.Enabled = false;
+            this.NUP_Forme2.Location = new System.Drawing.Point(9, 81);
+            this.NUP_Forme2.Maximum = new decimal(new int[] {
+            26,
+            0,
+            0,
+            0});
+            this.NUP_Forme2.Name = "NUP_Forme2";
+            this.NUP_Forme2.Size = new System.Drawing.Size(36, 20);
+            this.NUP_Forme2.TabIndex = 8;
             // 
-            // checkBox1
+            // CHK_MEvo1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 68);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(65, 17);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Enabled";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.CHK_MEvo1.AutoSize = true;
+            this.CHK_MEvo1.Enabled = false;
+            this.CHK_MEvo1.Location = new System.Drawing.Point(12, 68);
+            this.CHK_MEvo1.Name = "CHK_MEvo1";
+            this.CHK_MEvo1.Size = new System.Drawing.Size(65, 17);
+            this.CHK_MEvo1.TabIndex = 13;
+            this.CHK_MEvo1.Text = "Enabled";
+            this.CHK_MEvo1.UseVisualStyleBackColor = true;
+            this.CHK_MEvo1.CheckedChanged += new System.EventHandler(this.CHK_MEvo1_CheckedChanged);
             // 
-            // checkBox2
+            // CHK_MEvo2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(93, 68);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(65, 17);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "Enabled";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.CHK_MEvo2.AutoSize = true;
+            this.CHK_MEvo2.Enabled = false;
+            this.CHK_MEvo2.Location = new System.Drawing.Point(93, 68);
+            this.CHK_MEvo2.Name = "CHK_MEvo2";
+            this.CHK_MEvo2.Size = new System.Drawing.Size(65, 17);
+            this.CHK_MEvo2.TabIndex = 14;
+            this.CHK_MEvo2.Text = "Enabled";
+            this.CHK_MEvo2.UseVisualStyleBackColor = true;
+            this.CHK_MEvo2.CheckedChanged += new System.EventHandler(this.CHK_MEvo2_CheckedChanged);
             // 
-            // comboBox1
+            // CB_Species
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
-            this.comboBox1.TabIndex = 15;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.CB_Species.Enabled = false;
+            this.CB_Species.FormattingEnabled = true;
+            this.CB_Species.Location = new System.Drawing.Point(12, 12);
+            this.CB_Species.Name = "CB_Species";
+            this.CB_Species.Size = new System.Drawing.Size(156, 21);
+            this.CB_Species.TabIndex = 15;
+            this.CB_Species.SelectedIndexChanged += new System.EventHandler(this.CB_Species_SelectedIndexChanged);
+            this.CB_Species.SelectedValueChanged += new System.EventHandler(this.CB_Species_SelectedValueChanged);
             // 
-            // groupBox3
+            // GB_MEvo3
             // 
-            this.groupBox3.Controls.Add(this.numericUpDown5);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.numericUpDown6);
-            this.groupBox3.Location = new System.Drawing.Point(174, 91);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(75, 109);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Evolution 3";
+            this.GB_MEvo3.Controls.Add(this.NUP_Item3);
+            this.GB_MEvo3.Controls.Add(this.LBL_Forme3);
+            this.GB_MEvo3.Controls.Add(this.LBL_Item3);
+            this.GB_MEvo3.Controls.Add(this.NUP_Forme3);
+            this.GB_MEvo3.Enabled = false;
+            this.GB_MEvo3.Location = new System.Drawing.Point(174, 91);
+            this.GB_MEvo3.Name = "GB_MEvo3";
+            this.GB_MEvo3.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo3.TabIndex = 13;
+            this.GB_MEvo3.TabStop = false;
+            this.GB_MEvo3.Text = "Evolution 3";
             // 
-            // numericUpDown5
+            // NUP_Item3
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(9, 36);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown5.TabIndex = 11;
+            this.NUP_Item3.Enabled = false;
+            this.NUP_Item3.Location = new System.Drawing.Point(9, 36);
+            this.NUP_Item3.Maximum = new decimal(new int[] {
+            775,
+            0,
+            0,
+            0});
+            this.NUP_Item3.Name = "NUP_Item3";
+            this.NUP_Item3.Size = new System.Drawing.Size(50, 20);
+            this.NUP_Item3.TabIndex = 11;
             // 
-            // label5
+            // LBL_Forme3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Form";
+            this.LBL_Forme3.AutoSize = true;
+            this.LBL_Forme3.Enabled = false;
+            this.LBL_Forme3.Location = new System.Drawing.Point(6, 65);
+            this.LBL_Forme3.Name = "LBL_Forme3";
+            this.LBL_Forme3.Size = new System.Drawing.Size(30, 13);
+            this.LBL_Forme3.TabIndex = 10;
+            this.LBL_Forme3.Text = "Form";
             // 
-            // label6
+            // LBL_Item3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(27, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Item";
+            this.LBL_Item3.AutoSize = true;
+            this.LBL_Item3.Enabled = false;
+            this.LBL_Item3.Location = new System.Drawing.Point(6, 20);
+            this.LBL_Item3.Name = "LBL_Item3";
+            this.LBL_Item3.Size = new System.Drawing.Size(27, 13);
+            this.LBL_Item3.TabIndex = 9;
+            this.LBL_Item3.Text = "Item";
             // 
-            // numericUpDown6
+            // NUP_Forme3
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(9, 81);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(36, 20);
-            this.numericUpDown6.TabIndex = 8;
+            this.NUP_Forme3.Enabled = false;
+            this.NUP_Forme3.Location = new System.Drawing.Point(9, 81);
+            this.NUP_Forme3.Maximum = new decimal(new int[] {
+            26,
+            0,
+            0,
+            0});
+            this.NUP_Forme3.Name = "NUP_Forme3";
+            this.NUP_Forme3.Size = new System.Drawing.Size(36, 20);
+            this.NUP_Forme3.TabIndex = 8;
             // 
-            // checkBox3
+            // CHK_MEvo3
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(174, 68);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(65, 17);
-            this.checkBox3.TabIndex = 16;
-            this.checkBox3.Text = "Enabled";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.CHK_MEvo3.AutoSize = true;
+            this.CHK_MEvo3.Enabled = false;
+            this.CHK_MEvo3.Location = new System.Drawing.Point(174, 68);
+            this.CHK_MEvo3.Name = "CHK_MEvo3";
+            this.CHK_MEvo3.Size = new System.Drawing.Size(65, 17);
+            this.CHK_MEvo3.TabIndex = 16;
+            this.CHK_MEvo3.Text = "Enabled";
+            this.CHK_MEvo3.UseVisualStyleBackColor = true;
+            this.CHK_MEvo3.CheckedChanged += new System.EventHandler(this.CHK_MEvo3_CheckedChanged);
             // 
-            // label7
+            // LBL_GameMode
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 36);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Game mode: ";
+            this.LBL_GameMode.AutoSize = true;
+            this.LBL_GameMode.Enabled = false;
+            this.LBL_GameMode.Location = new System.Drawing.Point(9, 36);
+            this.LBL_GameMode.Name = "LBL_GameMode";
+            this.LBL_GameMode.Size = new System.Drawing.Size(70, 13);
+            this.LBL_GameMode.TabIndex = 17;
+            this.LBL_GameMode.Text = "Game mode: ";
             // 
             // MEE
             // 
@@ -273,30 +324,30 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(261, 212);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.LBL_GameMode);
+            this.Controls.Add(this.CHK_MEvo3);
+            this.Controls.Add(this.GB_MEvo3);
+            this.Controls.Add(this.CB_Species);
+            this.Controls.Add(this.CHK_MEvo2);
+            this.Controls.Add(this.CHK_MEvo1);
+            this.Controls.Add(this.GB_MEvo2);
+            this.Controls.Add(this.B_Save);
+            this.Controls.Add(this.B_Open);
+            this.Controls.Add(this.GB_MEvo1);
             this.Name = "MEE";
             this.Text = "Mega Evo Editor";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme1)).EndInit();
+            this.GB_MEvo1.ResumeLayout(false);
+            this.GB_MEvo1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item1)).EndInit();
+            this.GB_MEvo2.ResumeLayout(false);
+            this.GB_MEvo2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme2)).EndInit();
+            this.GB_MEvo3.ResumeLayout(false);
+            this.GB_MEvo3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,28 +355,28 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button B_Open;
+        private System.Windows.Forms.Button B_Save;
+        private System.Windows.Forms.NumericUpDown NUP_Forme1;
+        private System.Windows.Forms.Label LBL_Item1;
+        private System.Windows.Forms.Label LBL_Forme1;
+        private System.Windows.Forms.GroupBox GB_MEvo1;
+        private System.Windows.Forms.NumericUpDown NUP_Item1;
+        private System.Windows.Forms.GroupBox GB_MEvo2;
+        private System.Windows.Forms.NumericUpDown NUP_Item2;
+        private System.Windows.Forms.Label LBL_Forme2;
+        private System.Windows.Forms.Label LBL_Item2;
+        private System.Windows.Forms.NumericUpDown NUP_Forme2;
+        private System.Windows.Forms.CheckBox CHK_MEvo1;
+        private System.Windows.Forms.CheckBox CHK_MEvo2;
+        private System.Windows.Forms.ComboBox CB_Species;
+        private System.Windows.Forms.GroupBox GB_MEvo3;
+        private System.Windows.Forms.NumericUpDown NUP_Item3;
+        private System.Windows.Forms.Label LBL_Forme3;
+        private System.Windows.Forms.Label LBL_Item3;
+        private System.Windows.Forms.NumericUpDown NUP_Forme3;
+        private System.Windows.Forms.CheckBox CHK_MEvo3;
+        private System.Windows.Forms.Label LBL_GameMode;
     }
 }
 
