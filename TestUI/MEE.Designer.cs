@@ -34,9 +34,9 @@
             this.LBL_Item1 = new System.Windows.Forms.Label();
             this.LBL_Forme1 = new System.Windows.Forms.Label();
             this.GB_MEvo1 = new System.Windows.Forms.GroupBox();
-            this.NUP_Item1 = new System.Windows.Forms.NumericUpDown();
+            this.CB_Item1 = new System.Windows.Forms.ComboBox();
             this.GB_MEvo2 = new System.Windows.Forms.GroupBox();
-            this.NUP_Item2 = new System.Windows.Forms.NumericUpDown();
+            this.CB_Item2 = new System.Windows.Forms.ComboBox();
             this.LBL_Forme2 = new System.Windows.Forms.Label();
             this.LBL_Item2 = new System.Windows.Forms.Label();
             this.NUP_Forme2 = new System.Windows.Forms.NumericUpDown();
@@ -44,7 +44,7 @@
             this.CHK_MEvo2 = new System.Windows.Forms.CheckBox();
             this.CB_Species = new System.Windows.Forms.ComboBox();
             this.GB_MEvo3 = new System.Windows.Forms.GroupBox();
-            this.NUP_Item3 = new System.Windows.Forms.NumericUpDown();
+            this.CB_Item3 = new System.Windows.Forms.ComboBox();
             this.LBL_Forme3 = new System.Windows.Forms.Label();
             this.LBL_Item3 = new System.Windows.Forms.Label();
             this.NUP_Forme3 = new System.Windows.Forms.NumericUpDown();
@@ -52,18 +52,15 @@
             this.LBL_GameMode = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme1)).BeginInit();
             this.GB_MEvo1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item1)).BeginInit();
             this.GB_MEvo2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme2)).BeginInit();
             this.GB_MEvo3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme3)).BeginInit();
             this.SuspendLayout();
             // 
             // B_Open
             // 
-            this.B_Open.Location = new System.Drawing.Point(174, 10);
+            this.B_Open.Location = new System.Drawing.Point(327, 12);
             this.B_Open.Name = "B_Open";
             this.B_Open.Size = new System.Drawing.Size(75, 23);
             this.B_Open.TabIndex = 4;
@@ -74,7 +71,7 @@
             // B_Save
             // 
             this.B_Save.Enabled = false;
-            this.B_Save.Location = new System.Drawing.Point(174, 39);
+            this.B_Save.Location = new System.Drawing.Point(327, 41);
             this.B_Save.Name = "B_Save";
             this.B_Save.Size = new System.Drawing.Size(75, 23);
             this.B_Save.TabIndex = 5;
@@ -117,56 +114,49 @@
             // 
             // GB_MEvo1
             // 
-            this.GB_MEvo1.Controls.Add(this.NUP_Item1);
+            this.GB_MEvo1.Controls.Add(this.CB_Item1);
             this.GB_MEvo1.Controls.Add(this.LBL_Forme1);
             this.GB_MEvo1.Controls.Add(this.LBL_Item1);
             this.GB_MEvo1.Controls.Add(this.NUP_Forme1);
             this.GB_MEvo1.Enabled = false;
             this.GB_MEvo1.Location = new System.Drawing.Point(12, 91);
             this.GB_MEvo1.Name = "GB_MEvo1";
-            this.GB_MEvo1.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo1.Size = new System.Drawing.Size(126, 109);
             this.GB_MEvo1.TabIndex = 11;
             this.GB_MEvo1.TabStop = false;
             this.GB_MEvo1.Text = "Evolution 1";
             // 
-            // NUP_Item1
+            // CB_Item1
             // 
-            this.NUP_Item1.Enabled = false;
-            this.NUP_Item1.Location = new System.Drawing.Point(9, 36);
-            this.NUP_Item1.Maximum = new decimal(new int[] {
-            775,
-            0,
-            0,
-            0});
-            this.NUP_Item1.Name = "NUP_Item1";
-            this.NUP_Item1.Size = new System.Drawing.Size(50, 20);
-            this.NUP_Item1.TabIndex = 11;
+            this.CB_Item1.Enabled = false;
+            this.CB_Item1.FormattingEnabled = true;
+            this.CB_Item1.Location = new System.Drawing.Point(2, 35);
+            this.CB_Item1.Name = "CB_Item1";
+            this.CB_Item1.Size = new System.Drawing.Size(121, 21);
+            this.CB_Item1.TabIndex = 12;
             // 
             // GB_MEvo2
             // 
-            this.GB_MEvo2.Controls.Add(this.NUP_Item2);
+            this.GB_MEvo2.Controls.Add(this.CB_Item2);
             this.GB_MEvo2.Controls.Add(this.LBL_Forme2);
             this.GB_MEvo2.Controls.Add(this.LBL_Item2);
             this.GB_MEvo2.Controls.Add(this.NUP_Forme2);
-            this.GB_MEvo2.Location = new System.Drawing.Point(93, 91);
+            this.GB_MEvo2.Enabled = false;
+            this.GB_MEvo2.Location = new System.Drawing.Point(144, 91);
             this.GB_MEvo2.Name = "GB_MEvo2";
-            this.GB_MEvo2.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo2.Size = new System.Drawing.Size(126, 109);
             this.GB_MEvo2.TabIndex = 12;
             this.GB_MEvo2.TabStop = false;
             this.GB_MEvo2.Text = "Evolution 2";
             // 
-            // NUP_Item2
+            // CB_Item2
             // 
-            this.NUP_Item2.Enabled = false;
-            this.NUP_Item2.Location = new System.Drawing.Point(9, 36);
-            this.NUP_Item2.Maximum = new decimal(new int[] {
-            775,
-            0,
-            0,
-            0});
-            this.NUP_Item2.Name = "NUP_Item2";
-            this.NUP_Item2.Size = new System.Drawing.Size(50, 20);
-            this.NUP_Item2.TabIndex = 11;
+            this.CB_Item2.Enabled = false;
+            this.CB_Item2.FormattingEnabled = true;
+            this.CB_Item2.Location = new System.Drawing.Point(2, 36);
+            this.CB_Item2.Name = "CB_Item2";
+            this.CB_Item2.Size = new System.Drawing.Size(121, 21);
+            this.CB_Item2.TabIndex = 13;
             // 
             // LBL_Forme2
             // 
@@ -217,7 +207,7 @@
             // 
             this.CHK_MEvo2.AutoSize = true;
             this.CHK_MEvo2.Enabled = false;
-            this.CHK_MEvo2.Location = new System.Drawing.Point(93, 68);
+            this.CHK_MEvo2.Location = new System.Drawing.Point(144, 68);
             this.CHK_MEvo2.Name = "CHK_MEvo2";
             this.CHK_MEvo2.Size = new System.Drawing.Size(65, 17);
             this.CHK_MEvo2.TabIndex = 14;
@@ -231,37 +221,33 @@
             this.CB_Species.FormattingEnabled = true;
             this.CB_Species.Location = new System.Drawing.Point(12, 12);
             this.CB_Species.Name = "CB_Species";
-            this.CB_Species.Size = new System.Drawing.Size(156, 21);
+            this.CB_Species.Size = new System.Drawing.Size(181, 21);
             this.CB_Species.TabIndex = 15;
             this.CB_Species.SelectedIndexChanged += new System.EventHandler(this.CB_Species_SelectedIndexChanged);
             this.CB_Species.SelectedValueChanged += new System.EventHandler(this.CB_Species_SelectedValueChanged);
             // 
             // GB_MEvo3
             // 
-            this.GB_MEvo3.Controls.Add(this.NUP_Item3);
+            this.GB_MEvo3.Controls.Add(this.CB_Item3);
             this.GB_MEvo3.Controls.Add(this.LBL_Forme3);
             this.GB_MEvo3.Controls.Add(this.LBL_Item3);
             this.GB_MEvo3.Controls.Add(this.NUP_Forme3);
             this.GB_MEvo3.Enabled = false;
-            this.GB_MEvo3.Location = new System.Drawing.Point(174, 91);
+            this.GB_MEvo3.Location = new System.Drawing.Point(276, 91);
             this.GB_MEvo3.Name = "GB_MEvo3";
-            this.GB_MEvo3.Size = new System.Drawing.Size(75, 109);
+            this.GB_MEvo3.Size = new System.Drawing.Size(126, 109);
             this.GB_MEvo3.TabIndex = 13;
             this.GB_MEvo3.TabStop = false;
             this.GB_MEvo3.Text = "Evolution 3";
             // 
-            // NUP_Item3
+            // CB_Item3
             // 
-            this.NUP_Item3.Enabled = false;
-            this.NUP_Item3.Location = new System.Drawing.Point(9, 36);
-            this.NUP_Item3.Maximum = new decimal(new int[] {
-            775,
-            0,
-            0,
-            0});
-            this.NUP_Item3.Name = "NUP_Item3";
-            this.NUP_Item3.Size = new System.Drawing.Size(50, 20);
-            this.NUP_Item3.TabIndex = 11;
+            this.CB_Item3.Enabled = false;
+            this.CB_Item3.FormattingEnabled = true;
+            this.CB_Item3.Location = new System.Drawing.Point(3, 36);
+            this.CB_Item3.Name = "CB_Item3";
+            this.CB_Item3.Size = new System.Drawing.Size(121, 21);
+            this.CB_Item3.TabIndex = 18;
             // 
             // LBL_Forme3
             // 
@@ -300,7 +286,7 @@
             // 
             this.CHK_MEvo3.AutoSize = true;
             this.CHK_MEvo3.Enabled = false;
-            this.CHK_MEvo3.Location = new System.Drawing.Point(174, 68);
+            this.CHK_MEvo3.Location = new System.Drawing.Point(285, 68);
             this.CHK_MEvo3.Name = "CHK_MEvo3";
             this.CHK_MEvo3.Size = new System.Drawing.Size(65, 17);
             this.CHK_MEvo3.TabIndex = 16;
@@ -323,7 +309,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(261, 212);
+            this.ClientSize = new System.Drawing.Size(414, 212);
             this.Controls.Add(this.LBL_GameMode);
             this.Controls.Add(this.CHK_MEvo3);
             this.Controls.Add(this.GB_MEvo3);
@@ -339,14 +325,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme1)).EndInit();
             this.GB_MEvo1.ResumeLayout(false);
             this.GB_MEvo1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item1)).EndInit();
             this.GB_MEvo2.ResumeLayout(false);
             this.GB_MEvo2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme2)).EndInit();
             this.GB_MEvo3.ResumeLayout(false);
             this.GB_MEvo3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUP_Item3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUP_Forme3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -361,9 +344,7 @@
         private System.Windows.Forms.Label LBL_Item1;
         private System.Windows.Forms.Label LBL_Forme1;
         private System.Windows.Forms.GroupBox GB_MEvo1;
-        private System.Windows.Forms.NumericUpDown NUP_Item1;
         private System.Windows.Forms.GroupBox GB_MEvo2;
-        private System.Windows.Forms.NumericUpDown NUP_Item2;
         private System.Windows.Forms.Label LBL_Forme2;
         private System.Windows.Forms.Label LBL_Item2;
         private System.Windows.Forms.NumericUpDown NUP_Forme2;
@@ -371,12 +352,14 @@
         private System.Windows.Forms.CheckBox CHK_MEvo2;
         private System.Windows.Forms.ComboBox CB_Species;
         private System.Windows.Forms.GroupBox GB_MEvo3;
-        private System.Windows.Forms.NumericUpDown NUP_Item3;
         private System.Windows.Forms.Label LBL_Forme3;
         private System.Windows.Forms.Label LBL_Item3;
         private System.Windows.Forms.NumericUpDown NUP_Forme3;
         private System.Windows.Forms.CheckBox CHK_MEvo3;
         private System.Windows.Forms.Label LBL_GameMode;
+        private System.Windows.Forms.ComboBox CB_Item1;
+        private System.Windows.Forms.ComboBox CB_Item2;
+        private System.Windows.Forms.ComboBox CB_Item3;
     }
 }
 

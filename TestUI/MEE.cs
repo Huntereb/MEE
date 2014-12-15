@@ -13,8 +13,6 @@ namespace TestUI
 {
     public partial class MEE : Form
     {
-
-        private string pathsource;
         private string basePath;
         private string[] files;
         private string mode = "";
@@ -25,7 +23,7 @@ namespace TestUI
         private Control[] item_spec = { };
         private Control[] checkbox_spec = { };
         private Control[] label_spec = { };
-        private Control[][] all_spec;
+        private Control[][] all_spec = { };
         private bool loaded = false;
 
         public MEE()            //All the initial settings
@@ -34,11 +32,11 @@ namespace TestUI
             #region Intializations
 
             groupbox_spec = new Control[] {GB_MEvo1,GB_MEvo2,GB_MEvo3};
-            item_spec = new Control[] { NUP_Item1, NUP_Item2, NUP_Item3 };
+            item_spec = new Control[] { CB_Item1, CB_Item2, CB_Item3 };
             forme_spec = new Control[] { NUP_Forme1, NUP_Forme2, NUP_Forme3 };
             checkbox_spec = new Control[] { CHK_MEvo1, CHK_MEvo2, CHK_MEvo3 };
             label_spec = new Control[] { LBL_Forme1, LBL_Item1, LBL_Item2, LBL_Item3, LBL_Forme2, LBL_Forme3, LBL_GameMode };
-            all_spec = new Control[][] { groupbox_spec, item_spec, forme_spec, checkbox_spec, label_spec};
+            all_spec = new Control[][] { groupbox_spec, item_spec, forme_spec, checkbox_spec, label_spec };
 
             ToolTip TT_Open = new ToolTip();
             TT_Open.AutoPopDelay = 5000;
@@ -59,8 +57,13 @@ namespace TestUI
                 Array.Copy(BitConverter.GetBytes( isChecked ? (ushort)1 : (ushort)0), 0, data, 2 + i * 8, 2);
                 if (isChecked)
                 {
-                    Array.Copy(BitConverter.GetBytes((ushort)((NumericUpDown)item_spec[i]).Value), 0, data, 4 + i * 8, 2);
+                    Array.Copy(BitConverter.GetBytes((ushort)((int)(((ComboBox)item_spec[i]).SelectedValue))), 0, data, 4 + i * 8, 2);
                     Array.Copy(BitConverter.GetBytes((ushort)((NumericUpDown)forme_spec[i]).Value), 0, data, i * 8, 2);
+                }
+                else
+                {
+                    Array.Copy(BitConverter.GetBytes((ushort)0), 0, data, i * 8, 2);
+                    Array.Copy(BitConverter.GetBytes((ushort)0), 0, data, 4 + i * 8, 2);
                 }
             }
             File.WriteAllBytes(path, data);
@@ -93,7 +96,7 @@ namespace TestUI
                 for (int i = 0; i < 3; i++)
                 {
                     ((NumericUpDown)forme_spec[i]).Value = BitConverter.ToUInt16(data, i * 8);
-                    ((NumericUpDown)item_spec[i]).Value = BitConverter.ToUInt16(data, 4 + i * 8);
+                    ((ComboBox)item_spec[i]).SelectedValue = (int)(BitConverter.ToUInt16(data, 4 + i * 8));
                     ((CheckBox)checkbox_spec[i]).Checked = (BitConverter.ToUInt16(data, 2 + (i * 8)) == 1);
                 }
             }
@@ -165,6 +168,39 @@ namespace TestUI
                 CB_Species.DisplayMember = "Text";
                 CB_Species.ValueMember = "Value";
                 CB_Species.SelectedValue = 0;
+
+                List<string> items = new List<string>(Properties.Resources.items.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None));
+                List<string> sorted_items = new List<string>(Properties.Resources.items.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None));
+                List<cbItem>[] item_lists = new List<cbItem>[item_spec.Length];
+                for (int i = 0; i < item_lists.Length; i++)
+                {
+                    item_lists[i] = new List<cbItem>();
+                }
+                sorted_items.Sort();
+                int limit = (this.mode == "X/Y" ? 718 : items.Count);
+                for (int i = 0; i <items.Count; i++)
+                {
+                    
+                    int index = items.IndexOf(sorted_items[i]);
+                    if (index < limit)
+                    {
+                        cbItem ncbi = new cbItem();
+                        ncbi.Text = sorted_items[i] + " - " + index.ToString("000");
+                        ncbi.Value = index;
+                        foreach (List<cbItem> l in item_lists)
+                        {
+                            l.Add(ncbi);
+                        }
+                    }
+                    items[index] = "";
+                }
+                for (int i = 0; i < item_spec.Length; i++)
+                {
+                    ((ComboBox)item_spec[i]).DataSource = item_lists[i];
+                    ((ComboBox)item_spec[i]).ValueMember = "Value";
+                    ((ComboBox)item_spec[i]).DisplayMember = "Text";
+                    ((ComboBox)item_spec[i]).SelectedValue = 0;
+                }
 
                 B_Save.Enabled = true;
                 CB_Species.Enabled = true;

@@ -61,7 +61,59 @@ namespace TestUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Egg
+        ///   Looks up a localized string similar to (None)
+        ///Master Ball
+        ///Ultra Ball
+        ///Great Ball
+        ///Poké Ball
+        ///Safari Ball
+        ///Net Ball
+        ///Dive Ball
+        ///Nest Ball
+        ///Repeat Ball
+        ///Timer Ball
+        ///Luxury Ball
+        ///Premier Ball
+        ///Dusk Ball
+        ///Heal Ball
+        ///Quick Ball
+        ///Cherish Ball
+        ///Potion
+        ///Antidote
+        ///Burn Heal
+        ///Ice Heal
+        ///Awakening
+        ///Paralyze Heal
+        ///Full Restore
+        ///Max Potion
+        ///Hyper Potion
+        ///Super Potion
+        ///Full Heal
+        ///Revive
+        ///Max Revive
+        ///Fresh Water
+        ///Soda Pop
+        ///Lemonade
+        ///Moomoo Milk
+        ///Energy Powder
+        ///Energy Root
+        ///Heal Powder
+        ///Revival Herb
+        ///Ether
+        ///Max Ether
+        ///Elixir
+        ///Max Elixir
+        ///Lava Cookie
+        ///Berry Jui [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string items {
+            get {
+                return ResourceManager.GetString("items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (None)
         ///Bulbasaur
         ///Ivysaur
         ///Venusaur
@@ -114,8 +166,7 @@ namespace TestUI.Properties {
         ///Diglett
         ///Dugtrio
         ///Meowth
-        ///Persian
-        /// [rest of string was truncated]&quot;;.
+        ///Persia [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string mons {
             get {
