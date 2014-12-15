@@ -23,6 +23,8 @@ namespace TestUI
         {
             InitializeComponent();
 
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
             label7.Text = "Game mode: None";
             label7.Enabled = false;
 
@@ -38,6 +40,10 @@ namespace TestUI
             numericUpDown5.Minimum = 0;
             numericUpDown6.Maximum = 10;
             numericUpDown6.Minimum = 0;
+
+            label8.AutoSize = false;
+            label8.Height = 2;
+            label8.BorderStyle = BorderStyle.Fixed3D;
 
             button2.Enabled = false;
             comboBox1.Enabled = false;
@@ -295,7 +301,7 @@ namespace TestUI
 
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)           //Checkbox 3 setup
         {
             if (checkBox3.Checked == false)
             {
@@ -329,7 +335,7 @@ namespace TestUI
                 MessageBox.Show("This file is not a valid evolution table! Make sure you didn't edit it with a hex editor or anything.");
             }
 
-            if (boxitem == "384 - Rayquaza")
+            if (boxitem == "384 - Rayquaza" && files.Length == 826)         //Yell at the user about Rayquaza if they're editing him in OR/AS mode
             {
                 MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
             }
@@ -389,6 +395,11 @@ namespace TestUI
                 checkBox3.Checked = false;
             }
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://pastebin.com/JaJxQ6ck");
         }
     }
 }
