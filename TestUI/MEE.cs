@@ -250,7 +250,7 @@ namespace TestUI
 
             if (boxitem == "384 - Rayquaza" && files.Length == 826)         //Yell at the user about Rayquaza if they're editing him in OR/AS mode
             {
-                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit his evolution table if you want to keep this functionality.");
+                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit this evolution table if you want to keep that functionality.");
             }
 
             byte[] Evoitem1 = File.ReadAllBytes(pathsource).Skip(4).Take(2).ToArray();            //Get byte arrays
@@ -302,6 +302,13 @@ namespace TestUI
             }
 
             if (Enabled1c == 0)
+            {
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+            }
+
+            if (Enabled1c == 2)           //Rayquaza shit
             {
                 checkBox1.Checked = false;
                 checkBox2.Checked = false;
