@@ -19,6 +19,11 @@ namespace TestUI
         private string[] files;
         private List<string> monNames;
         private string[] lines3;
+        private int Evoitem1c;
+        private int Evoitem2c;
+        private int Evoitem3c;
+        private bool IsShown = false;
+        private ToolTip toolTip1 = new ToolTip();
 
         public MEE()            //All the initial settings
         {
@@ -91,11 +96,8 @@ namespace TestUI
                 }
 
                 itembox1.Items.AddRange(lines3);            //Populate item list
-                itembox1.SelectedIndex = 0;
                 itembox2.Items.AddRange(lines3);
-                itembox2.SelectedIndex = 0;
                 itembox3.Items.AddRange(lines3);
-                itembox3.SelectedIndex = 0;
 
                 string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
@@ -121,6 +123,7 @@ namespace TestUI
                 checkBox1.Enabled = true;          //Re-enabled the first check box, dropdown, and save button so that the program isn't worthless
                 comboBox1.Enabled = true;
                 button2.Enabled = true;
+                button1.Enabled = false;
             }
 
         }
@@ -248,11 +251,6 @@ namespace TestUI
                 MessageBox.Show("This file is not a valid evolution table! Make sure you didn't edit it with a hex editor or anything.");
             }
 
-            if (boxitem == "384 - Rayquaza" && files.Length == 826)         //Yell at the user about Rayquaza if they're editing him in OR/AS mode
-            {
-                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit this evolution table if you want to keep that functionality.");
-            }
-
             byte[] Evoitem1 = File.ReadAllBytes(pathsource).Skip(4).Take(2).ToArray();            //Get byte arrays
             byte[] Evoitem2 = File.ReadAllBytes(pathsource).Skip(12).Take(2).ToArray();
             byte[] Evoitem3 = File.ReadAllBytes(pathsource).Skip(20).Take(2).ToArray();
@@ -263,15 +261,15 @@ namespace TestUI
             byte[] Enabled2 = File.ReadAllBytes(pathsource).Skip(10).Take(2).ToArray();
             byte[] Enabled3 = File.ReadAllBytes(pathsource).Skip(18).Take(2).ToArray();
 
-            var Evoitem1c = BitConverter.ToInt16(Evoitem1, 0);          //Convert bytes to integer
-            var Evoitem2c = BitConverter.ToInt16(Evoitem2, 0);
-            var Evoitem3c = BitConverter.ToInt16(Evoitem3, 0);
-            var Form1c = BitConverter.ToInt16(Form1, 0);
-            var Form2c = BitConverter.ToInt16(Form2, 0);
-            var Form3c = BitConverter.ToInt16(Form3, 0);
-            var Enabled1c = BitConverter.ToInt16(Enabled1, 0);
-            var Enabled2c = BitConverter.ToInt16(Enabled2, 0);
-            var Enabled3c = BitConverter.ToInt16(Enabled3, 0);
+            Evoitem1c = BitConverter.ToInt16(Evoitem1, 0);          //Convert bytes to integer
+            Evoitem2c = BitConverter.ToInt16(Evoitem2, 0);
+            Evoitem3c = BitConverter.ToInt16(Evoitem3, 0);
+            int Form1c = BitConverter.ToInt16(Form1, 0);
+            int Form2c = BitConverter.ToInt16(Form2, 0);
+            int Form3c = BitConverter.ToInt16(Form3, 0);
+            int Enabled1c = BitConverter.ToInt16(Enabled1, 0);
+            int Enabled2c = BitConverter.ToInt16(Enabled2, 0);
+            int Enabled3c = BitConverter.ToInt16(Enabled3, 0);
 
             numericUpDown1.Value = Form1c;            //Populate number boxes
             numericUpDown4.Value = Form2c;
@@ -315,30 +313,39 @@ namespace TestUI
                 checkBox3.Checked = false;
             }
 
+            if (boxitem == "384 - Rayquaza" && files.Length == 826)         //Yell at the user about Rayquaza if they're editing him in OR/AS mode
+            {
+                numericUpDown1.Value = Form1c;          //Refresh the value because it annoyed me
+                MessageBox.Show("Rayquaza is special and uses a different activator for his evolution. If he knows Dragon Accent, he can Mega Evolve. Don't edit this evolution table if you want to keep that functionality.");
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var Form1 = Convert.ToInt16(numericUpDown1.Value);          //Convert box contents to int16
-            var Form2 = Convert.ToInt16(numericUpDown4.Value);
-            var Form3 = Convert.ToInt16(numericUpDown6.Value);
+            int Form1 = Convert.ToInt16(numericUpDown1.Value);          //Convert box contents to int16
+            int Form2 = Convert.ToInt16(numericUpDown4.Value);
+            int Form3 = Convert.ToInt16(numericUpDown6.Value);
             string itembox1n = ((itembox1.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];          //Special extra step for this
             string itembox2n = ((itembox2.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];
             string itembox3n = ((itembox3.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];
-            var itembox1d = Convert.ToInt16(itembox1n);
-            var itembox2d = Convert.ToInt16(itembox2n);
-            var itembox3d = Convert.ToInt16(itembox3n);
+            int itembox1d = Convert.ToInt16(itembox1n);
+            int itembox2d = Convert.ToInt16(itembox2n);
+            int itembox3d = Convert.ToInt16(itembox3n);
 
-            var Form1b = BitConverter.GetBytes(Form1);          //Convert int16 to bytes for writing
-            var Form2b = BitConverter.GetBytes(Form2);
-            var Form3b = BitConverter.GetBytes(Form3);
-            var evoitem1 = BitConverter.GetBytes(itembox1d);
-            var evoitem2 = BitConverter.GetBytes(itembox2d);
-            var evoitem3 = BitConverter.GetBytes(itembox3d);
+            byte[] Form1b = BitConverter.GetBytes(Form1);          //Convert int16 to bytes for writing
+            byte[] Form2b = BitConverter.GetBytes(Form2);
+            byte[] Form3b = BitConverter.GetBytes(Form3);
+            byte[] evoitem1 = BitConverter.GetBytes(itembox1d);
+            byte[] evoitem2 = BitConverter.GetBytes(itembox2d);
+            byte[] evoitem3 = BitConverter.GetBytes(itembox3d);
 
-            BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file
+            BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file (From first to last byte order)
 
-            if (checkBox1.Checked == true)         //Set checkbox values to write
+            bw.Seek(0, 0);
+            bw.Write(Form1b);
+
+            if (checkBox1.Checked == true)
             {
                 bw.Seek(2, 0);
                 bw.Write(1);
@@ -349,6 +356,12 @@ namespace TestUI
                 bw.Seek(2, 0);
                 bw.Write(0);
             }
+
+            bw.Seek(4, 0);
+            bw.Write(evoitem1);
+
+            bw.Seek(8, 0);
+            bw.Write(Form2b);
 
             if (checkBox2.Checked == true)
             {
@@ -362,6 +375,12 @@ namespace TestUI
                 bw.Write(0);
             }
 
+            bw.Seek(12, 0);
+            bw.Write(evoitem2);
+
+            bw.Seek(16, 0);
+            bw.Write(Form3b);
+
             if (checkBox3.Checked == true)
             {
                 bw.Seek(18, 0);
@@ -374,26 +393,39 @@ namespace TestUI
                 bw.Write(0);
             }
 
-            bw.Seek(4, 0);
-            bw.Write(evoitem1);
-
-            bw.Seek(12, 0);
-            bw.Write(evoitem2);
-
             bw.Seek(20, 0);
             bw.Write(evoitem3);
 
-            bw.Seek(0, 0);
-            bw.Write(Form1b);
-
-            bw.Seek(8, 0);
-            bw.Write(Form2b);
-
-            bw.Seek(16, 0);
-            bw.Write(Form3b);
-
             bw.Close();
 
+        }
+
+        private void MEE_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control ctrl = this.GetChildAtPoint(e.Location);            //I copied this from stack overflow as an example
+
+            if (ctrl != null)
+            {
+                if (ctrl == this.button1 && !IsShown)
+                {
+                    toolTip1.AutoPopDelay = 5000;
+                    toolTip1.InitialDelay = 100;
+                    toolTip1.ReshowDelay = 500;
+                    toolTip1.ShowAlways = false;
+                    toolTip1.SetToolTip(button1, "Restart the program to load another file");
+
+                    string tipstring =
+ this.toolTip1.GetToolTip(this.button1);
+                    this.toolTip1.Show(tipstring, this.button1,
+ this.button1.Width / 2, this.button1.Height / 2);
+                    IsShown = true;
+                }
+            }
+            else
+            {
+                this.toolTip1.Hide(this.button1);
+                IsShown = false;
+            }
         }
     }
 }
