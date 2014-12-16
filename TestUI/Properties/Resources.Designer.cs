@@ -61,46 +61,44 @@ namespace TestUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 000 - Egg
-        ///001 - Bulbasaur
-        ///002 - Ivysaur
-        ///003 - Venusaur
-        ///004 - Charmander
-        ///005 - Charmeleon
-        ///006 - Charizard
-        ///007 - Squirtle
-        ///008 - Wartortle
-        ///009 - Blastoise
-        ///010 - Caterpie
-        ///011 - Metapod
-        ///012 - Butterfree
-        ///013 - Weedle
-        ///014 - Kakuna
-        ///015 - Beedrill
-        ///016 - Pidgey
-        ///017 - Pidgeotto
-        ///018 - Pidgeot
-        ///019 - Rattata
-        ///020 - Raticate
-        ///021 - Spearow
-        ///022 - Fearow
-        ///023 - Ekans
-        ///024 - Arbok
-        ///025 - Pikachu
-        ///026 - Raichu
-        ///027 - Sandshrew
-        ///028 - Sandslash
-        ///029 - Nidoran♀
-        ///030 - Nidorina
-        ///031 - Nidoqueen
-        ///032 - Nidoran♂
-        ///033 - Nidorino
-        ///034 - Nidoking
-        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to None - 0
+        ///Master Ball - 1
+        ///Ultra Ball - 2
+        ///Great Ball - 3
+        ///Poké Ball - 4
+        ///Safari Ball - 5
+        ///Net Ball - 6
+        ///Dive Ball - 7
+        ///Nest Ball - 8
+        ///Repeat Ball - 9
+        ///Timer Ball - 10
+        ///Luxury Ball - 11
+        ///Premier Ball - 12
+        ///Dusk Ball - 13
+        ///Heal Ball - 14
+        ///Quick Ball - 15
+        ///Cherish Ball - 16
+        ///Potion - 17
+        ///Antidote - 18
+        ///Burn Heal - 19
+        ///Ice Heal - 20
+        ///Awakening - 21
+        ///Paralyze Heal - 22
+        ///Full Restore - 23
+        ///Max Potion - 24
+        ///Hyper Potion - 25
+        ///Super Potion - 26
+        ///Full Heal - 27
+        ///Revive - 28
+        ///Max Revive - 29
+        ///Fresh Water - 30
+        ///Soda Pop - 31
+        ///Lemonade - 32
+        ///Moomoo M [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string mons {
+        internal static string items {
             get {
-                return ResourceManager.GetString("mons", resourceCulture);
+                return ResourceManager.GetString("items", resourceCulture);
             }
         }
         
@@ -142,9 +140,9 @@ namespace TestUI.Properties {
         ///034 - Nidoking
         /// [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string mons2 {
+        internal static string mons {
             get {
-                return ResourceManager.GetString("mons2", resourceCulture);
+                return ResourceManager.GetString("mons", resourceCulture);
             }
         }
     }

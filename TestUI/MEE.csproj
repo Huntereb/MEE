@@ -86,7 +86,7 @@
     <None Include="mons.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="mons2.txt" />
+    <None Include="items.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

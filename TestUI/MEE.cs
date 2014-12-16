@@ -18,6 +18,7 @@ namespace TestUI
         private string basePath;
         private string[] files;
         private List<string> monNames;
+        private string[] lines3;
 
         public MEE()            //All the initial settings
         {
@@ -25,20 +26,17 @@ namespace TestUI
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            label7.Text = "Game mode: None";
             label7.Enabled = false;
 
+            itembox1.Enabled = false;
+            itembox2.Enabled = false;
+            itembox3.Enabled = false;
+
             numericUpDown1.Maximum = 10;
-            numericUpDown1.Minimum = 0;
-            numericUpDown2.Maximum = 775;
-            numericUpDown2.Minimum = 0;
-            numericUpDown3.Maximum = 775;
-            numericUpDown3.Minimum = 0;
             numericUpDown4.Maximum = 10;
-            numericUpDown4.Minimum = 0;
-            numericUpDown5.Maximum = 775;
-            numericUpDown5.Minimum = 0;
             numericUpDown6.Maximum = 10;
+            numericUpDown1.Minimum = 0;
+            numericUpDown4.Minimum = 0;
             numericUpDown6.Minimum = 0;
 
             label8.AutoSize = false;
@@ -62,19 +60,6 @@ namespace TestUI
             label4.Enabled = false;
             label5.Enabled = false;
             label6.Enabled = false;
-            numericUpDown1.Enabled = false;
-            numericUpDown2.Enabled = false;
-            numericUpDown3.Enabled = false;
-            numericUpDown4.Enabled = false;
-            numericUpDown5.Enabled = false;
-            numericUpDown6.Enabled = false;
-
-            ToolTip toolTip1 = new ToolTip();
-            toolTip1.AutoPopDelay = 5000;
-            toolTip1.InitialDelay = 100;
-            toolTip1.ReshowDelay = 500;
-            toolTip1.ShowAlways = false;
-            toolTip1.SetToolTip(button1, "The Mega Evolutions Garc is at \"a/1/9/3\" for OR/AS, and \"a/2/1/6\" for X/Y");
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -92,110 +77,52 @@ namespace TestUI
                     return;
                 }
 
-                if (files.Length == 826)
+                string[] lines2 = Properties.Resources.items.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);         //Called same if statement twice because bullshit
+
+                if (files.Length == 826)            //List only items from the respective game
+                {
+                    lines3 = lines2.Take(776).ToArray();
+                }
+
+                if (files.Length == 799)
+                {
+
+                    lines3 = lines2.Take(718).ToArray();
+                }
+
+                itembox1.Items.AddRange(lines3);            //Populate item list
+                itembox1.SelectedIndex = 0;
+                itembox2.Items.AddRange(lines3);
+                itembox2.SelectedIndex = 0;
+                itembox3.Items.AddRange(lines3);
+                itembox3.SelectedIndex = 0;
+
+                string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+                if (files.Length == 826)            //List only guys from their respective game
                 {
                     label7.Text = "Game mode: OR/AS";
                     label7.Enabled = true;
-                    string[] lines = Properties.Resources.mons.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
-                    monNames = new List<string>(lines);
+                    string[] loras = lines.Take(826).ToArray();
+                    monNames = new List<string>(loras);
                 }
 
                 if (files.Length == 799)
                 {
                     label7.Text = "Game mode: X/Y";
                     label7.Enabled = true;
-                    string[] lines = Properties.Resources.mons2.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);           //Code rei did that I need to keep in mind for the future
-                    monNames = new List<string>(lines);
+                    string[] lxy = lines.Take(799).ToArray();
+                    monNames = new List<string>(lxy);
                 }
 
-                comboBox1.Items.AddRange(monNames.ToArray());
+                comboBox1.Items.AddRange(monNames.ToArray());           //Populate Pokemon list
                 comboBox1.SelectedIndex = 0;
             
                 checkBox1.Enabled = true;          //Re-enabled the first check box, dropdown, and save button so that the program isn't worthless
                 comboBox1.Enabled = true;
                 button2.Enabled = true;
-
-            end:
-
-                Console.Write("lol");           //I'm like fucking Macgyver
             }
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var Evoitem1 = Convert.ToInt16(numericUpDown2.Value);           //Convert "Numericupdown" stuff to int16
-            var Evoitem2 = Convert.ToInt16(numericUpDown3.Value);
-            var Evoitem3 = Convert.ToInt16(numericUpDown5.Value);
-            var Form1 = Convert.ToInt16(numericUpDown1.Value);
-            var Form2 = Convert.ToInt16(numericUpDown4.Value);
-            var Form3 = Convert.ToInt16(numericUpDown6.Value);
-
-            var Evoitem1b = BitConverter.GetBytes(Evoitem1);            //Convert int16 to Byte arrays
-            var Evoitem2b = BitConverter.GetBytes(Evoitem2);
-            var Evoitem3b = BitConverter.GetBytes(Evoitem3);
-            var Form1b = BitConverter.GetBytes(Form1);
-            var Form2b = BitConverter.GetBytes(Form2);
-            var Form3b = BitConverter.GetBytes(Form3);
-
-            BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file
-
-            if (checkBox1.Checked == true)         //Set checkbox values to write
-            {
-                bw.Seek(2, 0);
-                bw.Write(1);
-            }
-
-            if (checkBox1.Checked == false)
-            {
-                bw.Seek(2, 0);
-                bw.Write(0);
-            }
-
-            if (checkBox2.Checked == true)
-            {
-                bw.Seek(10, 0);
-                bw.Write(1);
-            }
-
-            if (checkBox2.Checked == false)
-            {
-                bw.Seek(10, 0);
-                bw.Write(0);
-            }
-
-            if (checkBox3.Checked == true)
-            {
-                bw.Seek(18, 0);
-                bw.Write(1);
-            }
-
-            if (checkBox3.Checked == false)
-            {
-                bw.Seek(18, 0);
-                bw.Write(0);
-            }
-
-            bw.Seek(4, 0);
-            bw.Write(Evoitem1b);
-
-            bw.Seek(12, 0);
-            bw.Write(Evoitem2b);
-
-            bw.Seek(20, 0);
-            bw.Write(Evoitem3b);
-
-            bw.Seek(0, 0);
-            bw.Write(Form1b);
-
-            bw.Seek(8, 0);
-            bw.Write(Form2b);
-
-            bw.Seek(16, 0);
-            bw.Write(Form3b);
-
-            bw.Close();
-            
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)           //Checkbox1 setup
@@ -216,19 +143,16 @@ namespace TestUI
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
                 groupBox3.Enabled = false;
-                numericUpDown1.Enabled = false;
-                numericUpDown2.Enabled = false;
-                numericUpDown3.Enabled = false;
-                numericUpDown4.Enabled = false;
-                numericUpDown5.Enabled = false;
-                numericUpDown6.Enabled = false;
 
-                numericUpDown1.Value = 0;
-                numericUpDown2.Value = 0;            //Set number boxes to 0
-                numericUpDown3.Value = 0;
+                numericUpDown1.Value = 0;           //Set number/item boxes to 0
                 numericUpDown4.Value = 0;
-                numericUpDown5.Value = 0;
                 numericUpDown6.Value = 0;
+                itembox1.Enabled = false;
+                itembox2.Enabled = false;
+                itembox3.Enabled = false;
+                itembox1.SelectedIndex = 0;
+                itembox2.SelectedIndex = 0;
+                itembox3.SelectedIndex = 0;
             }
 
             if (checkBox1.Checked == true)
@@ -239,19 +163,17 @@ namespace TestUI
                 label2.Enabled = true;
                 label3.Enabled = true;
                 numericUpDown1.Enabled = true;
-                numericUpDown2.Enabled = true;
 
                 groupBox2.Enabled = false;
                 label4.Enabled = false;
                 label1.Enabled = false;
-                numericUpDown3.Enabled = false;
                 numericUpDown4.Enabled = false;
 
                 groupBox3.Enabled = false;
                 label5.Enabled = false;
                 label6.Enabled = false;
-                numericUpDown5.Enabled = false;
                 numericUpDown6.Enabled = false;
+                itembox1.Enabled = true;
             }
 
         }
@@ -263,13 +185,14 @@ namespace TestUI
                 groupBox2.Enabled = false;
                 label4.Enabled = false;
                 label1.Enabled = false;
-                numericUpDown3.Enabled = false;
                 numericUpDown4.Enabled = false;
 
-                numericUpDown3.Value = 0;           //Set evolution2's checkboxes to 0
                 numericUpDown4.Value = 0;
-                numericUpDown5.Value = 0;
                 numericUpDown6.Value = 0;
+                itembox2.SelectedIndex = 0;
+                itembox3.SelectedIndex = 0;
+                itembox2.Enabled = false;
+                itembox3.Enabled = false;
 
                 checkBox3.Enabled = false;
                 checkBox3.Checked = false;
@@ -279,12 +202,12 @@ namespace TestUI
             {
                 groupBox2.Enabled = true;
                 label4.Enabled = true;
-                numericUpDown3.Enabled = true;
                 label1.Enabled = true;
                 numericUpDown4.Enabled = true;
 
                 checkBox3.Enabled = true;
                 checkBox3.Checked = false;
+                itembox2.Enabled = true;
             }
 
         }
@@ -296,8 +219,10 @@ namespace TestUI
                 label5.Enabled = false;
                 label6.Enabled = false;
                 groupBox3.Enabled = false;
-                numericUpDown5.Enabled = false;
                 numericUpDown6.Enabled = false;
+                numericUpDown6.Value = 0;
+                itembox3.SelectedIndex = 0;
+                itembox3.Enabled = false;
             }
 
             if (checkBox3.Checked == true)
@@ -305,8 +230,8 @@ namespace TestUI
                 label5.Enabled = true;
                 label6.Enabled = true;
                 groupBox3.Enabled = true;
-                numericUpDown5.Enabled = true;
                 numericUpDown6.Enabled = true;
+                itembox3.Enabled = true;
             }
         }
 
@@ -348,12 +273,12 @@ namespace TestUI
             var Enabled2c = BitConverter.ToInt16(Enabled2, 0);
             var Enabled3c = BitConverter.ToInt16(Enabled3, 0);
 
-            numericUpDown2.Value = Evoitem1c;            //Populate number boxes
-            numericUpDown3.Value = Evoitem2c;
-            numericUpDown5.Value = Evoitem3c;
-            numericUpDown1.Value = Form1c;
+            numericUpDown1.Value = Form1c;            //Populate number boxes
             numericUpDown4.Value = Form2c;
             numericUpDown6.Value = Form3c;
+            itembox1.SelectedIndex = Evoitem1c;
+            itembox2.SelectedIndex = Evoitem2c;
+            itembox3.SelectedIndex = Evoitem3c;
 
             if (Enabled1c == 1 && Enabled2c == 1 && Enabled3c == 1)           //Enable or disable checkboxes depending on the byte set
             {
@@ -385,9 +310,83 @@ namespace TestUI
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://pastebin.com/JaJxQ6ck");
+            var Form1 = Convert.ToInt16(numericUpDown1.Value);          //Convert box contents to int16
+            var Form2 = Convert.ToInt16(numericUpDown4.Value);
+            var Form3 = Convert.ToInt16(numericUpDown6.Value);
+            string itembox1n = ((itembox1.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];          //Special extra step for this
+            string itembox2n = ((itembox2.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];
+            string itembox3n = ((itembox3.SelectedItem.ToString()).Split(new string[] { " - " }, StringSplitOptions.None))[1];
+            var itembox1d = Convert.ToInt16(itembox1n);
+            var itembox2d = Convert.ToInt16(itembox2n);
+            var itembox3d = Convert.ToInt16(itembox3n);
+
+            var Form1b = BitConverter.GetBytes(Form1);          //Convert int16 to bytes for writing
+            var Form2b = BitConverter.GetBytes(Form2);
+            var Form3b = BitConverter.GetBytes(Form3);
+            var evoitem1 = BitConverter.GetBytes(itembox1d);
+            var evoitem2 = BitConverter.GetBytes(itembox2d);
+            var evoitem3 = BitConverter.GetBytes(itembox3d);
+
+            BinaryWriter bw = new BinaryWriter(new FileStream(pathsource, FileMode.Open));          //Write Bytes to file
+
+            if (checkBox1.Checked == true)         //Set checkbox values to write
+            {
+                bw.Seek(2, 0);
+                bw.Write(1);
+            }
+
+            if (checkBox1.Checked == false)
+            {
+                bw.Seek(2, 0);
+                bw.Write(0);
+            }
+
+            if (checkBox2.Checked == true)
+            {
+                bw.Seek(10, 0);
+                bw.Write(1);
+            }
+
+            if (checkBox2.Checked == false)
+            {
+                bw.Seek(10, 0);
+                bw.Write(0);
+            }
+
+            if (checkBox3.Checked == true)
+            {
+                bw.Seek(18, 0);
+                bw.Write(1);
+            }
+
+            if (checkBox3.Checked == false)
+            {
+                bw.Seek(18, 0);
+                bw.Write(0);
+            }
+
+            bw.Seek(4, 0);
+            bw.Write(evoitem1);
+
+            bw.Seek(12, 0);
+            bw.Write(evoitem2);
+
+            bw.Seek(20, 0);
+            bw.Write(evoitem3);
+
+            bw.Seek(0, 0);
+            bw.Write(Form1b);
+
+            bw.Seek(8, 0);
+            bw.Write(Form2b);
+
+            bw.Seek(16, 0);
+            bw.Write(Form3b);
+
+            bw.Close();
+
         }
     }
 }
